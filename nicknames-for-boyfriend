@@ -1,0 +1,1211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicknames for Boyfriend | Nick Names for My Boyfriend Generator</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <meta name="theme-color" content="#DC2626">
+    <meta property="og:url" content="https://www.nicknamesforboyfriend.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nicknames for Boyfriend">
+    <meta property="og:description" content="Generate romantic and cute nicknames for your boyfriend with our beautiful nickname generator wheel.">
+    <meta name="keywords" content="boyfriend nicknames, romantic names, pet names, cute nicknames, love names, relationship names">
+    <!-- Copy and paste this code into your website -->
+    <script async src='https://static.mywot.com/website_owners_badges/websiteOwnersBadge.js'></script>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #d9c7a7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0px;
+            margin:0;
+        }
+
+        .romantic-font {
+            font-family: 'Dancing Script', cursive;
+        }
+  #header{background: transparent;width:100%;height:50px;display:flex;align-items:center;justify-content: space-between;}
+        #header h1{margin-left:35px;font-size:25px;font-weight:900;color:#fef7ed}        
+        
+        #main{
+            width: 100%;
+            height: auto;
+            background-image: url('nicknames.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Wheel pointer */
+        #pointer {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 30px 16px 0 16px;
+            border-color: #dc2626 transparent transparent transparent;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: border-color 0.3s ease;
+            color:black;
+        }
+
+        /* Center container */
+        #canvas-container {
+            position: relative;
+            max-width: 550px;
+            min-width:530px;
+            margin:-70px 100px 0 100px;
+            aspect-ratio: 1 / 1;
+        }
+
+      
+        #icon{margin-right:15px;font-size:20px !important;color:#fef7ed !important}
+        #entrylistcon{width:300px;margin-top:40px;padding-bottom:10px;}
+        #entrylist{background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);width:100%;border-radius:15px;padding:20px;box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2); border: 2px solid #dc2626;}
+        
+        
+        
+        /* Modal animation */
+        @keyframes modal-appear {
+            0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        
+        .modal-animated {
+            animation: modal-appear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Winner text animation */
+        @keyframes winner-glow {
+            0% { text-shadow: 0 0 5px rgba(220, 38, 38, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(220, 38, 38, 0.8), 0 0 30px rgba(220, 38, 38, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(220, 38, 38, 0.5); }
+        }
+        
+        .winner-glow {
+            animation: winner-glow 2s infinite;
+        }
+
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #fed7aa;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #b91c1c;
+        }
+        
+        /* Color picker styling */
+        .color-picker {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        
+        .color-picker:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .color-picker.active {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.5);
+        }
+        
+        /* Custom range slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #fed7aa;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #dc2626;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #b91c1c;
+            transform: scale(1.1);
+        }
+        
+        /* Confetti animation */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Spin button animation */
+        @keyframes spin-icon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .spinning {
+            animation: spin-icon 1s linear infinite;
+        }
+        
+        /* Glass morphism effect for modal */
+        .glass-effect {
+            background: rgba(254, 247, 237, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+        
+        /* Elegant shadow for elements */
+        .elegant-shadow {
+            box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.2), 0 10px 10px -5px rgba(220, 38, 38, 0.1);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Falling colors animation */
+        @keyframes falling-colors {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .falling-color {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 999999999999;
+            pointer-events: none;
+            animation: falling-colors 5s linear forwards;
+        }
+
+        /* Saved names styling */
+        .saved-name-item {
+            transition: all 0.3s ease;
+            background: rgba(254, 215, 170, 0.5);
+        }
+        
+        .saved-name-item:hover {
+            transform: translateX(4px);
+            background: rgba(254, 215, 170, 0.7);
+        }
+
+        /* Romantic theme elements */
+        .romantic-border {
+            border: 2px solid #dc2626;
+            border-radius: 15px;
+        }
+        
+        .romantic-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #fed7aa;
+            color: #7c2d12;
+        }
+        
+        .romantic-input:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Floating hearts animation */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
+        }
+        
+        .floating-heart {
+            position: fixed;
+            font-size: 24px;
+            z-index: 40;
+            pointer-events: none;
+            animation: float 8s linear forwards;
+        }
+
+        /* Heart beat animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        
+        
+        #savedsec{;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 300px;height:auto;padding:20px;margin:100px auto;background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%)}
+        
+        #info{width:650px;height:auto;padding:10px;margin:70px auto;}
+        #info h2{font-family: 'Dancing Script', cursive;font-size:30px;margin-bottom:10px;word-spacing:8px;}
+        #info h3{font-family: 'Dancing Script', cursive;font-size:25px;margin-bottom:6px;margin-top:10px;word-spacing:8px}
+        #info p{font-family: 'Dancing Script', cursive;font-size:18px;word-spacing:8px}
+        
+        footer{width:100%;height:auto;background-color:#e7e7f1;display:flex;align-items:center;flex-direction:column;gap:20px}
+        #footerp{margin-top:15px;font-size:22px;font-family: 'Dancing Script', cursive}
+
+        @media screen and (min-device-width: 500px) and (max-device-width: 900px) { 
+            #header{background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);width:100%;height:50px;display:flex;align-items:center;justify-content: space-between;}
+            #header h1{margin-left:15px;font-size:18px;font-weight:900;color:#fef7ed}
+            #icon{margin-right:15px;font-size:20px !important;color:#fef7ed !important}
+            #entrylistcon{width:300px;margin-top:-30px;padding-bottom:10px;float:left}
+            #entrylist{background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);width:100%;border-radius:15px;padding:20px;box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2); border: 2px solid #dc2626;}
+
+            #canvas-container {
+                position:absolute;
+                max-width: 350px;
+                min-width:350px;
+                top:120px;
+                right:-20px;
+            }
+        #info{width:350px;height:auto;padding:10px;margin:70px auto;}    
+        }
+        
+        @media screen and (min-device-width: 281px) and (max-device-width: 500px) { 
+            
+            #header{width:100%;height:50px;display:flex;align-items:center;justify-content: space-between;}
+            #header h1{margin-left:15px;font-size:18px;font-weight:900;color:#fef7ed}
+            #icon{margin-right:15px;font-size:20px !important;color:#fef7ed !important}
+            #entrylistcon{width:100%;margin-top:30px !important;padding-bottom:10px;margin:auto;}
+            #entrylist{background: linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%);width:100%;border-radius:15px;padding:20px;box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2); border: 2px solid #dc2626;}
+            
+            #main{
+            width: 100%;
+            height:calc(100vh - 50px);
+            background-image: url('nicknames.png');
+            background-size: cover;
+            background-position:center;   
+            background-repeat: no-repeat;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background-attachment: fixed; 
+            overflow-y: auto; 
+           
+
+        }
+
+            #canvas-container {
+                position: relative;
+                max-width: 99%;
+                min-width:99%;
+                margin:20px auto;
+                aspect-ratio: 1 / 1;
+                
+            }
+        #info{width:90%;height:auto;padding:10px;margin:70px auto;}    
+        }   
+        footer{width:100%;height:auto;background-color:#e7e7f1;display:flex;align-items:center;flex-direction:column;gap:20px}
+        #footerp{margin-top:10px;margin-left:10px;font-size:18px;font-family: 'Dancing Script', cursive}        
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+   
+  
+
+  <!-- header starts -->    
+    <div id="header">
+    <h1 style="display: flex; align-items: center; gap: 8px;" class="romantic-font">
+            <span>Nicknames for Boyfriend</span>
+            <span style="cursor: pointer;" class="heartbeat">❤️</span>
+        </h1>
+        <div id="icon">
+            <button id="soundToggle" class="bg-red-600/50 hover:bg-red-700/50 text-red-100 p-2 rounded-full transition duration-300 backdrop-blur-sm">
+                <svg id="soundOnIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828a1 1 0 010-1.415z" clip-rule="evenodd" />
+                </svg>
+                <svg id="soundOffIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <button id="settingsToggle" class="bg-red-600/50 hover:bg-red-700/50 text-red-100 p-2 rounded-full transition duration-300 backdrop-blur-sm" style="margin-left:10px">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </button>
+        </div>           
+    </div> 
+    
+    <!--header ends -->
+    
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full" id="main">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            
+            
+            <!-- Left Panel: Nickname Generation Controls -->
+            <div id="entrylistcon">
+                <div id="entrylist">
+                    <h2 class="text-2xl font-bold text-red-800 mb-4 romantic-font">Romantic Nicknames</h2>
+                    
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-red-700 mb-2">Nickname Style</label>
+                            <select id="nicknameStyle" class="w-full p-2 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-150 text-red-800 font-normal">
+                                <option value="romantic">Romantic & Sweet</option>
+                                <option value="cute">Cute & Playful</option>
+                                <option value="flirty">Flirty & Teasing</option>
+                                <option value="protective">Protective & Strong</option>
+                                <option value="food">Food & Sweet Treats</option>
+                                <option value="animal">Animal-Themed</option>
+                                <option value="royal">Royal & Noble</option>
+                                <option value="random">Random Mix</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-red-700 mb-2">Name Length</label>
+                            <select id="nameLength" class="w-full p-2 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-150 text-red-800 font-normal">
+                                <option value="short">Short (1-2 words)</option>
+                                <option value="medium" selected>Medium (2-3 words)</option>
+                                <option value="long">Long (3-4 words)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-red-700 mb-2">Number of Nicknames to Generate</label>
+                            <input type="number" id="nameCount" min="1" max="20" value="8" class="w-full p-1 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-150 text-red-800 font-normal">
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2 mt-4">
+                        <button id="generateButton" 
+                            class="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-2.5 rounded-xl transition duration-300 ease-in-out transform hover:scale-[1.02] romantic-font shadow-lg"
+                            onclick="generateNicknames()"
+                        >
+                            Generate Names
+                        </button>
+                        <button id="spinButton" 
+                            class="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-2.5 rounded-xl transition duration-300 ease-in-out transform hover:scale-[1.02] romantic-font shadow-lg"
+                            onclick="startSpin()"
+                        >
+                            Spin Wheel
+                        </button>
+                    </div>
+                   <p id="entryCount" class="text-sm text-red-700 mt-2 text-center font-medium"></p>
+                   
+
+                </div>
+            </div>
+            
+            
+
+            <!-- Center Panel: The Wheel -->
+            <div class="">
+                <div id="canvas-container" class="relative">
+                    <div id="pointer" class="transition-all duration-100"></div>
+                    <canvas id="wheelCanvas" class="rounded-full elegant-shadow border-4 border-white bg-white"></canvas>
+                    <button id="spinWheelButton" 
+                        class="absolute inset-0 m-auto w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-full elegant-shadow border-4 border-white transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-red-300 disabled:from-red-300 disabled:to-red-400 disabled:shadow-none flex items-center justify-center heartbeat"
+                        onclick="startSpin()"
+                    >
+                        <span id="spinIcon" style="cursor: pointer;font-size:50px" class="heartbeat">❤️</span>
+                        
+                    </button>
+                </div>
+                
+            </div>
+
+        </div>
+        
+        <br><br>
+        
+        
+        <!-- saved names starts -->
+        <div id="savedsec">
+            
+             
+
+                    <!-- Saved Names Section -->
+                    <div class="mt-6 pt-4">
+                        <h3 class="text-lg font-semibold text-red-800 mb-2 romantic-font" style="margin-top:-40px">Saved Nicknames</h3>
+                        <div id="savedNamesList" class="max-h-40 overflow-y-auto custom-scrollbar space-y-2">
+                            <!-- Saved names will appear here -->
+                        </div>
+                        <div class="flex space-x-2 mt-3">
+                            <button id="clearSavedBtn" 
+                                class="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-2 rounded-lg transition duration-300 text-sm romantic-font"
+                                onclick="clearSavedNames()"
+                            >
+                                Clear All
+                            </button>
+                            <button id="exportSavedBtn" 
+                                class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-2 rounded-lg transition duration-300 text-sm romantic-font"
+                                onclick="exportSavedNames()"
+                            >
+                                Export
+                            </button>
+                        </div>
+                    </div>
+            
+        </div>
+     <!-- saved names ends -->   
+        
+        
+        <br><br><br><br><br> <br><br>
+        <div id="info">
+            <h2>Enjoy creating boyfriend nicknames</h2>
+            <p>Getting hardtime choosing your boyfriend's nickname. We have created this tool that will make your task easy and definately you will enjoy the process.</p>
+            <h3>How to use the tool?</h3>
+            <p>In the leftbar (if you have opened the site on PC), there are various options to select like nickname styles (sweet, flirty, protective, royal etc), name-length you want in nicknames and the number of names you want to be generated. After this, click on the generate names and then spin the wheel.</p>
+            <p>The spinner will rotate for the selected time and will pick a random nickname from the generated list. If you like the picked name, keep it in the wishlist or you can discard and generate new.</p>
+            <p>The wishlist of the picked nicknames can then be exported in txt file.</p>
+            <p>If you want to get more <a style="color:#ff4da6" href="https://www.nicknamesforboyfriend.com/nicknames-for-my-boyfriend">list of nicknames for boyfriend</a>, visit the page</p> 
+                <p>Visit this page for <a style="color:#ff4da6" href="https://www.nicknamesforboyfriend.com/nicknames-for-girlfriend">Nicknames for girlfriend</a></p>
+            
+            
+            
+            
+        </div>
+        
+        <!-- Settings Panel -->
+        <div id="settingsPanel" class="hidden mt-8 romantic-border p-6 rounded-xl elegant-shadow bg-white">
+            <h2 class="text-2xl font-bold text-red-800 mb-4 romantic-font">Customization Settings</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Color Customization -->
+                <div>
+                    <h3 class="text-lg font-semibold text-red-700 mb-3">Wheel Colors</h3>
+                    <div id="colorPickers" class="flex flex-wrap gap-3 mb-4"></div>
+                    <p class="text-sm text-red-600">Click on a color to change the corresponding segment color</p>
+                </div>
+                
+                <!-- Spin Duration Settings -->
+                <div>
+                    <h3 class="text-lg font-semibold text-red-700 mb-3">Spin Duration</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-red-700">Spin Duration</span>
+                                <span id="spinDurationValue" class="text-sm font-medium text-red-600">5 seconds</span>
+                            </div>
+                            <input type="range" id="spinDuration" min="3" max="15" value="5" class="w-full">
+                            <div class="flex justify-between text-xs text-red-600 mt-1">
+                                <span>3s</span>
+                                <span>15s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sound Settings -->
+                <div>
+                    <h3 class="text-lg font-semibold text-red-700 mb-3">Sound Settings</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="winSoundToggle" class="custom-checkbox mr-3" checked>
+                            <label for="winSoundToggle" class="text-red-700">Enable romantic sound</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="hidden fixed inset-0 bg-red-100/80 z-50 flex items-center justify-center p-4">
+        <div id="modalContent" class="glass-effect p-8 rounded-2xl elegant-shadow max-w-lg w-full transform transition-all relative romantic-border">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-red-600 hover:text-red-800 transition duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center mx-auto mb-4 heartbeat">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="text-3xl font-bold gradient-text mb-2 romantic-font">Perfect Nickname!</h3>
+                <p class="text-red-700">Your romantic nickname is</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-red-100 to-red-50 p-6 rounded-xl border border-red-300 mb-6">
+                <p id="winnerText" class="text-4xl font-black text-center text-red-800 winner-glow break-words romantic-font"></p>
+            </div>
+            
+            <div class="flex space-x-4">
+                <button id="generateNewBtn"
+                    class="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 rounded-xl transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-red-300 flex items-center justify-center romantic-font" 
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Generate New
+                </button>
+                <button id="keepNameBtn"
+                    class="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 rounded-xl transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-amber-300 flex items-center justify-center romantic-font" 
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Keep Name
+                </button>
+            </div>
+    
+        </div>
+    
+    
+    
+    
+    </div>
+    <br><br><br>
+    
+
+
+<br><br><br>
+    
+    <br><br><br>
+    
+    <!-- Footer -->
+    <footer>
+        <br>
+        <p id="footerp">Create Romantic Names for Your Special Someone! 💕</p>
+<div style="display:flex;align-items:center;justify-content:center;gap:30px">
+<a href="//www.dmca.com/Protection/Status.aspx?ID=44a1773d-e7d3-4e8c-9ccc-b9c915a2ea95" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=44a1773d-e7d3-4e8c-9ccc-b9c915a2ea95"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>        
+<a id='wot-badge0' class='wot-badge' >
+    <div class='wot-logo'></div>
+    <div class='wot-shield'></div>
+    <p class='wot-secured'>Verified Website</p>
+    <div class='wot-vertical'></div>
+    <p class='wot-report'></p>
+</a>
+</div>
+<a style="font-size:14px;font-family:arial" href="https://www.nicknamesforboyfriend.com/about">About</a>
+    </footer>
+
+    <script>
+        // --- Global Variables and Constants ---
+        const canvas = document.getElementById('wheelCanvas');
+        const ctx = canvas.getContext('2d');
+        const spinWheelButton = document.getElementById('spinWheelButton');
+        const spinIcon = document.getElementById('spinIcon');
+        const resultModal = document.getElementById('resultModal');
+        const modalContent = document.getElementById('modalContent');
+        const winnerText = document.getElementById('winnerText');
+        const entryCountEl = document.getElementById('entryCount');
+        const pointerEl = document.getElementById('pointer');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const settingsToggle = document.getElementById('settingsToggle');
+        const soundToggle = document.getElementById('soundToggle');
+        const soundOnIcon = document.getElementById('soundOnIcon');
+        const soundOffIcon = document.getElementById('soundOffIcon');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const generateNewBtn = document.getElementById('generateNewBtn');
+        const keepNameBtn = document.getElementById('keepNameBtn');
+        const spinDurationSlider = document.getElementById('spinDuration');
+        const spinDurationValue = document.getElementById('spinDurationValue');
+        const colorPickersContainer = document.getElementById('colorPickers');
+        const savedNamesList = document.getElementById('savedNamesList');
+
+        // Initial setup
+        let nicknames = [];
+        let totalRotation = 0;
+        let isSpinning = false;
+        let lastWinner = null;
+        let isSoundEnabled = true;
+        let spinDuration = 5;
+        let settings = { winSound: true };
+        let savedNames = [];
+
+        // Romantic color palette
+        //let colors = ['#f8e3e7', '#e7bace', '#d9a5c5', '#c895b9', '#e3687e', '#d14a76'];
+        let colors = ['#ffd1dc', '#b8d8e6', '#c6f7d0', '#ffe6a7', '#e6b8e6', '#ffccbc', '#87d4c5', '#ffb3de'];
+
+
+
+
+
+
+        // Audio for celebration sound
+        const celebrationSound = new Audio('sound.mp3');
+        let isSoundPlaying = false;
+
+        // Boyfriend Nickname Databases
+        const nicknameDatabases = {
+            romantic: [
+                'My Love', 'My Heart', 'My Everything', 'My Soulmate', 'My Forever', 'My Destiny', 'My King', 'My Hero', 
+                'My Prince', 'My Angel', 'My Sunshine', 'My World', 'My Dream', 'My Happiness', 'My Treasure', 'My Darling',
+                'Sweetheart', 'Beloved', 'Dearest', 'Precious', 'Adored', 'Cherished', 'Darling', 'Honey', 'Sweetie'
+            ],
+            cute: [
+                'Cutie Pie', 'Sweet Cheeks', 'Babe', 'Baby', 'Baby Boy', 'Boo', 'Boo Bear', 'Snuggle Bug', 'Cuddle Bear',
+                'Sweet Pea', 'Sugar', 'Honey Bun', 'Pumpkin', 'Cupcake', 'Muffin', 'Cookie', 'Teddy Bear', 'Pookie',
+                'Love Bug', 'Snookums', 'Buttercup', 'Sweet Stuff', 'Honey Bee', 'Sugar Plum', 'Peaches'
+            ],
+            flirty: [
+                'Hot Stuff', 'Handsome', 'Stud', 'Hunk', 'Mr. Perfect', 'Dream Boat', 'Heartthrob', 'Sexy', 'Gorgeous',
+                'Irresistible', 'Charming', 'Dashing', 'Captivating', 'Alluring', 'Tempting', 'Magnetic', 'Sizzling',
+                'Smoking Hot', 'Fine', 'Delicious', 'Yummy', 'Tasty', 'Irresistible', 'Temptation', 'Forbidden Fruit'
+            ],
+            protective: [
+                'My Protector', 'My Guardian', 'My Shield', 'My Rock', 'My Fortress', 'My Strength', 'My Anchor', 'My Safe Place',
+                'My Hero', 'My Champion', 'My Knight', 'My Warrior', 'My Defender', 'My Shelter', 'My Harbor', 'My Sanctuary',
+                'My Support', 'My Foundation', 'My Backbone', 'My Pillar', 'My Tower', 'My Mountain', 'My Oak', 'My Lion', 'My Bear'
+            ],
+            food: [
+                'Honey', 'Sugar', 'Sweetie Pie', 'Cupcake', 'Muffin', 'Cookie', 'Brownie', 'Pudding', 'Jelly Bean', 'Gumdrop',
+                'Lollipop', 'Marshmallow', 'Toffee', 'Fudge', 'Caramel', 'Chocolate', 'Cinnamon', 'Nutmeg', 'Spice', 'Pepper',
+                'Apple Pie', 'Cherry', 'Peach', 'Berry', 'Melon', 'Kiwi', 'Mango', 'Papaya', 'Pineapple', 'Strawberry'
+            ],
+            animal: [
+                'Bear', 'Lion', 'Tiger', 'Wolf', 'Fox', 'Eagle', 'Hawk', 'Falcon', 'Stallion', 'Bull',
+                'Puppy', 'Kitty', 'Cub', 'Fawn', 'Lamb', 'Chick', 'Duckling', 'Birdie', 'Bunny', 'Panda',
+                'Koala', 'Dolphin', 'Seal', 'Otter', 'Penguin', 'Owl', 'Parrot', 'Swan', 'Peacock', 'Phoenix'
+            ],
+            royal: [
+                'My King', 'My Prince', 'My Lord', 'Your Highness', 'Your Majesty', 'My Royal', 'My Emperor', 'My Sovereign',
+                'My Ruler', 'My Crown', 'My Throne', 'My Scepter', 'My Regal', 'My Noble', 'My Aristocrat', 'My Duke',
+                'My Baron', 'My Knight', 'My Champion', 'My Paladin', 'My Guardian', 'My Protector', 'My Defender', 'My Hero'
+            ]
+        };
+
+        // Initialize with generated nicknames and load saved names
+        generateNicknames();
+        loadSavedNames();
+
+        // --- Nickname Generation Functions ---
+        function generateNicknames() {
+            const nicknameStyle = document.getElementById('nicknameStyle').value;
+            const nameLength = document.getElementById('nameLength').value;
+            const count = parseInt(document.getElementById('nameCount').value);
+            
+            nicknames = [];
+            
+            for (let i = 0; i < count; i++) {
+                let nickname = '';
+                
+                // For random mix, pick a random style
+                const style = nicknameStyle === 'random' ? 
+                    Object.keys(nicknameDatabases)[Math.floor(Math.random() * Object.keys(nicknameDatabases).length)] : 
+                    nicknameStyle;
+                
+                nickname = generateBoyfriendNickname(style, nameLength);
+                nicknames.push(nickname);
+            }
+            
+            updateWheel();
+        }
+
+        function generateBoyfriendNickname(style, length) {
+            const nameList = nicknameDatabases[style];
+            let name = nameList[Math.floor(Math.random() * nameList.length)];
+            
+            // For longer names, sometimes add "My" or other romantic prefixes
+            if (length === 'long' && Math.random() < 0.7 && !name.startsWith('My ')) {
+                const prefixes = ['My Beloved', 'My Dearest', 'My Precious', 'My Adored', 'My Cherished'];
+                const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                name = prefix + ' ' + name;
+            }
+            // For medium names, sometimes add romantic adjectives
+            else if (length === 'medium' && Math.random() < 0.5) {
+                const adjectives = ['Sweet', 'Dear', 'Precious', 'Adorable', 'Lovely', 'Wonderful', 'Amazing', 'Incredible'];
+                const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+                
+                if (!name.startsWith('My ')) {
+                    name = adjective + ' ' + name;
+                }
+            }
+            
+            return name;
+        }
+
+        // --- Saved Names Functions ---
+        function loadSavedNames() {
+            const saved = localStorage.getItem('savedBoyfriendNames');
+            if (saved) {
+                savedNames = JSON.parse(saved);
+                updateSavedNamesDisplay();
+            }
+        }
+
+        function saveName(name) {
+            if (!savedNames.includes(name)) {
+                savedNames.push(name);
+                localStorage.setItem('savedBoyfriendNames', JSON.stringify(savedNames));
+                updateSavedNamesDisplay();
+            }
+        }
+
+        function updateSavedNamesDisplay() {
+            savedNamesList.innerHTML = '';
+            
+            if (savedNames.length === 0) {
+                savedNamesList.innerHTML = '<p class="text-red-600 text-sm text-center py-2">No saved nicknames yet</p>';
+                return;
+            }
+            
+            savedNames.forEach((name, index) => {
+                const nameItem = document.createElement('div');
+                nameItem.className = 'saved-name-item flex justify-between items-center p-2 rounded-lg romantic-font';
+                nameItem.innerHTML = `
+                    <span class="text-red-800 font-medium">${name}</span>
+                    <button onclick="removeSavedName(${index})" class="text-red-600 hover:text-red-800 transition duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                `;
+                savedNamesList.appendChild(nameItem);
+            });
+        }
+
+        function removeSavedName(index) {
+            savedNames.splice(index, 1);
+            localStorage.setItem('savedBoyfriendNames', JSON.stringify(savedNames));
+            updateSavedNamesDisplay();
+        }
+
+        function clearSavedNames() {
+            if (confirm('Are you sure you want to clear all saved nicknames?')) {
+                savedNames = [];
+                localStorage.removeItem('savedBoyfriendNames');
+                updateSavedNamesDisplay();
+            }
+        }
+
+        function exportSavedNames() {
+            if (savedNames.length === 0) {
+                alert('No saved nicknames to export.');
+                return;
+            }
+            
+            const blob = new Blob([savedNames.join('\n')], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'boyfriend-nicknames.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // --- Utility Functions ---
+        function updateWheel() {
+            const total = nicknames.length;
+
+            if (total === 0) {
+                spinWheelButton.disabled = true;
+                colors = ['#fecaca','#fca5a5','#f87171','#ef4444','#dc2626','#b91c1c','#fdba74','#f59e0b'];
+            } else {
+                spinWheelButton.disabled = isSpinning;
+                while (colors.length < nicknames.length) {
+                    colors.push(colors[Math.floor(Math.random() * colors.length)]);
+                }
+                colors = colors.slice(0, nicknames.length);
+            }
+
+            entryCountEl.textContent = `${nicknames.length} generated nicknames.`;
+            updateColorPickers();
+            drawWheel();
+        }
+
+        function updateColorPickers() {
+            colorPickersContainer.innerHTML = '';
+            nicknames.forEach((_, index) => {
+                const picker = document.createElement('input');
+                picker.type = 'color';
+                picker.className = 'color-picker';
+                picker.value = colors[index] || '#fecaca';
+                picker.addEventListener('change', (e) => {
+                    colors[index] = e.target.value;
+                    drawWheel();
+                });
+                colorPickersContainer.appendChild(picker);
+            });
+        }
+
+        // --- Canvas Drawing Logic ---
+        function setCanvasSize() {
+            const container = document.getElementById('canvas-container');
+            const size = container.offsetWidth;
+            canvas.width = size;
+            canvas.height = size;
+        }
+
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            drawWheel();
+        });
+
+        // Initial size setup
+        setCanvasSize();
+
+        function drawWheel() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(centerX, centerY) * 0.98;
+            const total = nicknames.length;
+
+            if (total === 0) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#dc2626';
+                ctx.font = '20px Dancing Script';
+                ctx.fillText('Generate nicknames first!', centerX, centerY);
+                return;
+            }
+
+            const arc = (2 * Math.PI) / total;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Apply current rotation
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(totalRotation * (Math.PI / 180));
+
+            // Dynamic Font Size
+            const fontSize = total > 15 ? 12 : (total > 8 ? 14 : 16);
+            ctx.font = `600 ${fontSize}px Dancing Script`;
+
+            for (let i = 0; i < total; i++) {
+                const startAngle = i * arc;
+                const endAngle = (i + 1) * arc;
+
+                // Draw slice
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.fill();
+
+                // Outline
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Draw Text
+                ctx.save();
+                ctx.rotate(startAngle + arc / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#7c2d12';
+                const textX = radius * 0.85;
+
+                let nameToDisplay = nicknames[i];
+                if (total > 8 && nameToDisplay.length > 15) {
+                    nameToDisplay = nameToDisplay.substring(0, 15) + '...';
+                }
+
+                ctx.fillText(nameToDisplay, textX, 5);
+                ctx.restore();
+            }
+
+            ctx.restore();
+
+            // Center hub
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.02, 0, 2 * Math.PI);
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+            
+            // Update pointer color to match the current top segment
+            updatePointerColor();
+        }
+
+        function updatePointerColor() {
+            const total = nicknames.length;
+            if (total === 0) {
+                pointerEl.style.borderColor = '#dc2626 transparent transparent transparent';
+                return;
+            }
+            
+            const winningIndex = calculateWinnerIndex();
+            const segmentColor = colors[winningIndex];
+            pointerEl.style.borderColor = `${segmentColor} transparent transparent transparent`;
+        }
+
+        // --- Spinning Logic ---
+        function startSpin() {
+            if (isSpinning || nicknames.length === 0) return;
+            isSpinning = true;
+            spinWheelButton.disabled = true;
+            spinIcon.classList.add('spinning');
+
+            const extraRotations = Math.floor(Math.random() * 6 + 7);
+            const randomAngle = Math.random() * 360;
+            const finalTarget = totalRotation + extraRotations * 360 + randomAngle;
+
+            animateSpin(finalTarget);
+        }
+
+        function animateSpin(finalTarget) {
+            let startTime = null;
+            const duration = spinDuration * 1000;
+            const startRotation = totalRotation;
+
+            function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                let t = Math.min(1, elapsed / duration);
+                let easedT = easeOutQuint(t);
+                const newRotation = startRotation + (finalTarget - startRotation) * easedT;
+
+                totalRotation = newRotation % 360;
+                drawWheel();
+
+                if (t < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    totalRotation = finalTarget % 360;
+                    drawWheel();
+                    spinIcon.classList.remove('spinning');
+                    const winningIndex = calculateWinnerIndex();
+                    showWinner(winningIndex);
+                    isSpinning = false;
+                    spinWheelButton.disabled = nicknames.length === 0;
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        function calculateWinnerIndex() {
+            const total = nicknames.length;
+            if (total === 0) return 0;
+
+            const sliceAngle = 360 / total;
+            const pointerDeg = 270;
+
+            for (let i = 0; i < total; i++) {
+                let start = (i * sliceAngle + totalRotation) % 360;
+                if (start < 0) start += 360;
+                let end = (start + sliceAngle) % 360;
+
+                if (start < end) {
+                    if (pointerDeg >= start && pointerDeg < end) {
+                        return i;
+                    }
+                } else {
+                    if (pointerDeg >= start || pointerDeg < end) {
+                        return i;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
+        function showWinner(index) {
+            lastWinner = nicknames[index];
+            winnerText.textContent = lastWinner;
+
+            resultModal.classList.remove('hidden');
+            modalContent.classList.add('modal-animated');
+
+            createFallingHearts();
+
+            if (isSoundEnabled && settings.winSound) {
+                celebrationSound.currentTime = 0;
+                celebrationSound.play().then(() => {
+                    isSoundPlaying = true;
+                }).catch(e => console.log('Audio play failed:', e));
+            }
+
+            createConfetti();
+        }
+
+        function createFallingHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💞', '💘', '💝', '🧡', '💛', '💚', '💙', '💜'];
+            
+            for (let i = 0; i < 40; i++) {
+                const heartElement = document.createElement('div');
+                heartElement.className = 'floating-heart';
+                heartElement.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heartElement.style.left = Math.random() * 100 + 'vw';
+                heartElement.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(heartElement);
+
+                setTimeout(() => {
+                    if (heartElement.parentNode) {
+                        document.body.removeChild(heartElement);
+                    }
+                }, 8000);
+            }
+        }
+
+        function createConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.id = 'confetti-container';
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '40';
+            document.body.appendChild(confettiContainer);
+
+            const colors = ['#fecaca', '#fca5a5', '#f87171', '#ef4444', '#dc2626', '#b91c1c', '#fdba74', '#f59e0b'];
+
+            for (let i = 0; i < 200; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = 'confetti-fall linear forwards';
+                confettiContainer.appendChild(confetti);
+            }
+
+            setTimeout(() => {
+                if (document.getElementById('confetti-container')) {
+                    document.body.removeChild(confettiContainer);
+                }
+            }, 6000);
+        }
+
+        function generateNewAndContinue() {
+            generateNicknames();
+            closeModal();
+        }
+
+        function keepNameAndContinue() {
+            if (lastWinner) {
+                saveName(lastWinner);
+            }
+            closeModal();
+        }
+
+        function closeModal() {
+            if (isSoundPlaying) {
+                celebrationSound.pause();
+                celebrationSound.currentTime = 0;
+                isSoundPlaying = false;
+            }
+
+            modalContent.classList.remove('modal-animated');
+            setTimeout(() => {
+                resultModal.classList.add('hidden');
+                lastWinner = null;
+            }, 50);
+        }
+
+        function toggleSound() {
+            isSoundEnabled = !isSoundEnabled;
+            if (isSoundEnabled) {
+                soundOnIcon.classList.remove('hidden');
+                soundOffIcon.classList.add('hidden');
+            } else {
+                soundOnIcon.classList.add('hidden');
+                soundOffIcon.classList.remove('hidden');
+            }
+        }
+
+        function toggleSettings() {
+            if (settingsPanel.classList.contains('hidden')) {
+                settingsPanel.classList.remove('hidden');
+            } else {
+                settingsPanel.classList.add('hidden');
+            }
+        }
+
+        function updateSpinDuration() {
+            spinDuration = parseInt(spinDurationSlider.value);
+            spinDurationValue.textContent = `${spinDuration} seconds`;
+        }
+
+        // --- Initialization ---
+        window.onload = function() {
+            soundToggle.addEventListener('click', toggleSound);
+            settingsToggle.addEventListener('click', toggleSettings);
+            closeModalBtn.addEventListener('click', closeModal);
+            generateNewBtn.addEventListener('click', generateNewAndContinue);
+            keepNameBtn.addEventListener('click', keepNameAndContinue);
+            spinDurationSlider.addEventListener('input', updateSpinDuration);
+
+            const savedSettings = localStorage.getItem('boyfriendWheelSettings');
+            if (savedSettings) {
+                settings = JSON.parse(savedSettings);
+                document.getElementById('winSoundToggle').checked = settings.winSound;
+            }
+
+            document.getElementById('winSoundToggle').addEventListener('change', function() {
+                settings.winSound = this.checked;
+                localStorage.setItem('boyfriendWheelSettings', JSON.stringify(settings));
+            });
+
+            updateSpinDuration();
+            updateWheel();
+        }
+
+        // Expose functions globally for HTML elements
+        window.startSpin = startSpin;
+        window.closeModal = closeModal;
+        window.updateWheel = updateWheel;
+        window.generateNicknames = generateNicknames;
+        window.generateNewAndContinue = generateNewAndContinue;
+        window.keepNameAndContinue = keepNameAndContinue;
+        window.removeSavedName = removeSavedName;
+        window.clearSavedNames = clearSavedNames;
+        window.exportSavedNames = exportSavedNames;
+
+    </script>
+</body>
+</html>
